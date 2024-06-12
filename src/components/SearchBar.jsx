@@ -5,6 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
+import TripletFilter from "./TripletFilter";
 
 const SearchBar = () => {
   const [queries, setQueries] = useState([]);
@@ -69,29 +70,10 @@ const SearchBar = () => {
 
   return (
     <>
-      <div
-        onBlur={() => setIsDropdown(false)}
-        className="h-10  w-full flex items-center justify-center relative"
-      >
-        {queries.map((query, index) => (
-          <div
-            key={index}
-            className="absolute flex items-center  px-2 py-1 rounded mr-2"
-          >
-            <span>
-              {query?.attribute} {query?.operation} {query?.value}
-            </span>
-            <button
-              type="button"
-              onClick={() => removeQuery(index)}
-              className="ml-2 text-red-500"
-            >
-              x
-            </button>
-          </div>
-        ))}
+      <div className="h-11  w-full flex items-center justify-center relative bg-[#17181d] border-2 border-[#1f212c] rounded gap-1">
+        <TripletFilter queries={queries} removeQuery={removeQuery} />
         <input
-          className="h-full w-full bg-[#17181d] px-4 outline-none border-2 border-[#1f212c] rounded  shadow-lg placeholder:text-sm placeholder:text-[#3f4044] pr-10"
+          className="h-full flex-grow bg-transparent px-3 outline-none shadow-lg placeholder:text-sm placeholder:text-[#3f4044] pr-10"
           placeholder='Search Filter: select options from suggested values, for IN/NOT IN operators - press "Enter" after selecting options'
           type="text"
           value={step === "value" ? currentQuery.value : inputValue}

@@ -1,4 +1,4 @@
-export const attributes = [
+const attributes = [
   "conatiner_id",
   "container_name",
   "severity_number",
@@ -9,12 +9,10 @@ export const attributes = [
   "severity_text",
 ];
 
-export const operations = [
-  "=",
-  "!=",
-  "IN",
-  "NOT_IN",
-  "LIKE",
-  "NOT_LIKE",
-  "CONTAINS",
-];
+const operations = ["=", "!=", "IN", "NOT_IN", "LIKE", "NOT_LIKE", "CONTAINS"];
+
+export const getDropdownOptions = (step) => {
+  if (step === "attribute") return attributes;
+  if (step === "operation") return operations;
+  return [];
+};

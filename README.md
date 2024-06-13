@@ -25,11 +25,6 @@ https://ctrlb-query-filter-builder.vercel.app/
 - **Input Focus**: The input field focuses automatically when required.
 - **Dynamic Dropdown Options**: Options are filtered based on the current step (attribute, operation, or value).
 
-## Known Bugs
-
-- **Undefined Option**: When a user types an option, it sometimes returns undefined.
-- **Operation Duplication**: Occasionally, the operation value gets duplicated.
-
 ## Tech Stack
 
 - **React**

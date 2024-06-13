@@ -85,6 +85,7 @@ const SearchBar = () => {
       const nextIndex =
         (focusedIndex + direction + options.length) % options.length;
       setFocusedIndex(nextIndex);
+      setInputValue(options[nextIndex]);
     } else if (key === "Enter" && step !== "value") {
       handleSelect(options[focusedIndex]);
     }

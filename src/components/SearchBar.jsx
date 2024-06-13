@@ -41,6 +41,7 @@ const SearchBar = () => {
     focusInput();
   };
   const handleSelect = (selectedValue) => {
+    if (!selectedValue) return;
     if (step === "attribute") {
       setCurrentQuery({
         attribute: selectedValue,
@@ -58,10 +59,12 @@ const SearchBar = () => {
   };
 
   const handleValueChange = (e) => {
+    const value = e.target.value;
     if (step === "value") {
-      setCurrentQuery((prev) => ({ ...prev, value: e.target.value }));
+      setCurrentQuery((prev) => ({ ...prev, value }));
     } else {
-      setInputValue(e.target.value);
+      setInputValue(value);
+      setIsDropdown(true);
     }
   };
 
@@ -91,38 +94,37 @@ const SearchBar = () => {
     }
   };
 
-  const getDisplayValue = () => {
-    if (step === "operation") return `${currentQuery.attribute} ${inputValue}`;
-    if (step === "value") return currentQuery.value;
-    return inputValue;
-  };
-
   return (
     <>
       <div
         tabIndex={1}
-        className="sm:h-11 min-h-11 flex-col sm:flex-row w-full flex sm:items-center sm:justify-center relative bg-[#17181d] border-2 border-[#1f212c] rounded gap-1"
+        className="min-h-11 flex-col md:flex-row w-full flex md:text-base md:items-center md:justify-center relative bg-[#17181d] border-2 border-[#1f212c] rounded gap-1 md:pr-10 pr-6 text-sm shadow-lg"
         onKeyDown={handleKeyDown}
       >
         <TripletFilter queries={queries} removeQuery={removeQuery} />
-        <input
-          ref={inputRef}
-          className="md:h-full flex-grow bg-transparent px-3 outline-none shadow-lg placeholder:text-sm placeholder:text-[#3f4044] pr-10 placeholder:truncate overflow-hidden "
-          placeholder={`${
-            step !== "value"
-              ? 'Search Filter: select options from suggested values, for IN/NOT IN operators - press "Enter" after selecting options'
-              : 'Type specific value and press "Enter" to form triplet'
-          }`}
-          type="text"
-          value={getDisplayValue()}
-          onClick={() => setIsDropdown(true)}
-          onChange={handleValueChange}
-          onKeyUp={handleAddQuery}
-          aria-label="Search filter"
-        />
+        <div className="flex flex-grow items-center py-2">
+          <span className="h-full flex items-center justify-center ml-1">
+            {currentQuery.attribute} {currentQuery.operation}
+          </span>
+          <input
+            ref={inputRef}
+            className="h-full flex-grow bg-transparent px-3 outline-none  placeholder:text-sm placeholder:text-[#3f4044]  placeholder:truncate"
+            placeholder={`${
+              step !== "value"
+                ? 'Search Filter: select options from suggested values, for IN/NOT IN operators - press "Enter" after selecting options'
+                : 'Type specific value and press "Enter" to form triplet'
+            }`}
+            type="text"
+            value={step !== "value" ? inputValue : currentQuery.value}
+            onClick={() => setIsDropdown(true)}
+            onChange={handleValueChange}
+            onKeyUp={handleAddQuery}
+            aria-label="Search filter"
+          />
+        </div>
         <FontAwesomeIcon
           onClick={() => setIsDropdown(!isDropdown && step !== "value")}
-          className="absolute z-10 right-4 text-sm text-[#3f4044]"
+          className="absolute  z-10 right-2  text-sm text-[#3f4044] top-1/2  -translate-y-1/2"
           icon={isDropdown ? faMagnifyingGlass : faChevronDown}
           aria-hidden="true"
         />

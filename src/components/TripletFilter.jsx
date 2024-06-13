@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TripletFilter = ({ queries, removeQuery }) => {
   return (
-    <>
+    <div className="flex flex-wrap gap-1 items-center h-full max-w-3/5 my-1 ">
       {queries?.map((query, index) => (
         <div
           key={index}
@@ -20,7 +20,7 @@ const TripletFilter = ({ queries, removeQuery }) => {
           />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

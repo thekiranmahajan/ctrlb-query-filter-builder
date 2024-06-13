@@ -19,7 +19,7 @@ const SearchBar = () => {
   const [step, setStep] = useState("attribute");
   const [inputValue, setInputValue] = useState("");
   const [isDropdown, setIsDropdown] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [focusedIndex, setFocusedIndex] = useState(0);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -82,7 +82,9 @@ const SearchBar = () => {
 
   const handleKeyDown = (e) => {
     if (!isDropdown) return;
+
     const { key } = e;
+
     if (key === "ArrowDown" || key === "ArrowUp") {
       const direction = key === "ArrowDown" ? 1 : -1;
       const nextIndex =
@@ -98,17 +100,17 @@ const SearchBar = () => {
     <>
       <div
         tabIndex={1}
-        className="min-h-11 flex-col md:flex-row w-full flex md:text-base md:items-center md:justify-center relative bg-[#17181d] border-2 border-[#1f212c] rounded gap-1 md:pr-10 pr-6 text-sm shadow-lg"
+        className="relative flex min-h-11 w-full flex-col gap-1 rounded border-2 border-[#1f212c] bg-[#17181d] pr-6 text-sm shadow-lg md:flex-row md:items-center md:justify-center md:pr-10 md:text-base"
         onKeyDown={handleKeyDown}
       >
         <TripletFilter queries={queries} removeQuery={removeQuery} />
         <div className="flex flex-grow items-center py-2">
-          <span className="h-full flex items-center justify-center ml-1">
+          <span className="ml-1 flex h-full items-center justify-center">
             {currentQuery.attribute} {currentQuery.operation}
           </span>
           <input
             ref={inputRef}
-            className="h-full flex-grow bg-transparent px-3 outline-none  placeholder:text-sm placeholder:text-[#3f4044]  placeholder:truncate"
+            className="h-full flex-grow bg-transparent px-3 outline-none placeholder:truncate placeholder:text-sm placeholder:text-[#3f4044]"
             placeholder={`${
               step !== "value"
                 ? 'Search Filter: select options from suggested values, for IN/NOT IN operators - press "Enter" after selecting options'
@@ -124,7 +126,7 @@ const SearchBar = () => {
         </div>
         <FontAwesomeIcon
           onClick={() => setIsDropdown(!isDropdown && step !== "value")}
-          className="absolute  z-10 right-2  text-sm text-[#3f4044] top-1/2  -translate-y-1/2"
+          className="absolute right-2 top-1/2 z-10 -translate-y-1/2 text-sm text-[#3f4044]"
           icon={isDropdown ? faMagnifyingGlass : faChevronDown}
           aria-hidden="true"
         />

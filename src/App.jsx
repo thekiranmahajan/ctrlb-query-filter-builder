@@ -3,7 +3,7 @@ import { SearchBar } from "./components";
 
 const App = () => {
   return (
-    <div className="h-screen w-screen text-[#bcbdbe] bg-[#0b0c0e] font-firaCode flex items-center p-5 flex-col">
+    <div className="flex h-screen w-screen flex-col items-center bg-[#0b0c0e] p-5 font-firaCode text-[#bcbdbe]">
       <SearchBar />
     </div>
   );

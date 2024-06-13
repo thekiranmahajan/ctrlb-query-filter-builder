@@ -17,27 +17,23 @@ const Dropdown = ({
   }, [focusedIndex]);
 
   return (
-    <div className="bg-[#121317] z-10 w-full mt-2 rounded p-1 flex flex-col justify-start gap-1  overflow-y-auto overflow-x-hidden">
-      {options
-        .filter((option) =>
-          option.toLowerCase().includes(inputValue.toLowerCase())
-        )
-        .map((option, index) => (
-          <div
-            key={index}
-            ref={index === focusedIndex ? optionContainer : null}
-            onClick={() => onSelect(option)}
-            className={` h-10 w-full active:bg-[#434650] rounded flex px-3 items-center cursor-pointer ${
-              index === focusedIndex ? "bg-[#434650]" : ""
-            }`}
-            role="button"
-            tabIndex={0}
-            aria-label={option}
-          >
-            {step === "operation" && `${currentQuery?.attribute} `}
-            {option}
-          </div>
-        ))}
+    <div className="z-10 mt-2 flex w-full flex-col justify-start gap-1 overflow-y-auto overflow-x-hidden rounded bg-[#121317] p-1">
+      {options.map((option, index) => (
+        <div
+          key={index}
+          ref={index === focusedIndex ? optionContainer : null}
+          onClick={() => onSelect(option)}
+          className={`flex h-10 w-full cursor-pointer items-center rounded px-3 active:bg-[#434650] ${
+            index === focusedIndex ? "bg-[#434650]" : ""
+          }`}
+          role="button"
+          tabIndex={0}
+          aria-label={option}
+        >
+          {step === "operation" && `${currentQuery?.attribute} `}
+          {option}
+        </div>
+      ))}
     </div>
   );
 };

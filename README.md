@@ -12,9 +12,11 @@ This project is a Query Filter Builder UI built using React, Vite, Tailwind CSS,
 - **Dropdown Toggle**: Dropdown can be toggled by clicking the input field or the magnifying glass icon.
 
 ## Preview
+
 ![image](https://github.com/thekiranmahajan/ctrlb-query-filter-builder/assets/91893931/4c4b2720-a5b9-4fca-aade-40d4fca20d24)
 
 ## Live Demo
+
 https://ctrlb-query-filter-builder.vercel.app/
 
 ## Additional Functionalities

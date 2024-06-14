@@ -100,7 +100,7 @@ const SearchBar = () => {
     <>
       <div
         tabIndex={1}
-        className="relative flex min-h-11 w-full flex-col gap-1 rounded border-2 border-[#1f212c] bg-[#17181d] pr-6 text-sm shadow-lg md:flex-row md:items-center md:justify-center md:pr-10 md:text-base"
+        className="relative flex min-h-11 w-full flex-col gap-1 overflow-hidden rounded border-2 border-[#1f212c] bg-[#17181d] pr-6 text-sm shadow-lg md:flex-row md:items-center md:justify-center md:pr-10 md:text-base"
         onKeyDown={handleKeyDown}
       >
         <TripletFilter queries={queries} removeQuery={removeQuery} />
@@ -110,7 +110,7 @@ const SearchBar = () => {
           </span>
           <input
             ref={inputRef}
-            className="h-full flex-grow bg-transparent px-3 outline-none placeholder:truncate placeholder:text-sm placeholder:text-[#3f4044]"
+            className="h-full flex-grow overflow-hidden bg-transparent px-3 outline-none placeholder:truncate placeholder:text-sm placeholder:text-[#3f4044]"
             placeholder={`${
               step !== "value"
                 ? 'Search Filter: select options from suggested values, for IN/NOT IN operators - press "Enter" after selecting options'

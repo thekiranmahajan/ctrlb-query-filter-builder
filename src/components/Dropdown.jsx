@@ -4,7 +4,6 @@ const Dropdown = ({
   focusedIndex,
   options,
   step,
-  inputValue,
   onSelect,
   currentQuery,
 }) => {

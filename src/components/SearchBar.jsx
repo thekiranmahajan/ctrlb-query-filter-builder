@@ -137,7 +137,6 @@ const SearchBar = () => {
           focusedIndex={focusedIndex}
           options={options}
           step={step}
-          inputValue={inputValue}
           onSelect={handleSelect}
           currentQuery={currentQuery}
         />
